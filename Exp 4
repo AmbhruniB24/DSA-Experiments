@@ -1,0 +1,25 @@
+#include <stdio.h>
+#define MAX 5
+int q[MAX], f=-1, r=-1;
+
+void enq(int v){ 
+    if((r+1)%MAX==f){ printf("Full\n"); return;}
+    if(f==-1) f=0;
+    r=(r+1)%MAX; q[r]=v;
+    printf("%d added\n",v);
+}
+void deq(){ 
+    if(f==-1){ printf("Empty\n"); return;}
+    printf("%d passed\n",q[f]);
+    if(f==r) f=r=-1; else f=(f+1)%MAX;
+}
+
+int main(){
+    int c,v;
+    while(1){
+        printf("1:Add 2:Pass 3:Exit\nChoice: "); scanf("%d",&c);
+        if(c==1){ printf("Vehicle: "); scanf("%d",&v); enq(v);}
+        else if(c==2) deq();
+        else break;
+    }
+}
